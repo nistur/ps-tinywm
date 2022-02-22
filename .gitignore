@@ -5,3 +5,18 @@
 obj/*
 bin/*
 *~
+*.o
+*.so
+*.a
+
+# scheme48 specific artefacts
+extern/scheme48/Makefile
+extern/scheme48/scheme48vm
+extern/scheme48/script-interpreter
+extern/scheme48/go
+extern/scheme48/c/sysdep.h
+extern/scheme48/c/scheme48arch.h
+
+
+config.log
+config.status
