@@ -1,3 +1,3 @@
 (define-structure hello (export main)
   (open prescheme)
-  (files hello-main))
+  (files hello/hello-main))

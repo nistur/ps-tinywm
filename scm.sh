@@ -2,8 +2,8 @@
 
 IN=$1
 OUT=$2
-
-SYM="${IN%.*}"
+FILE=$(basename ${OUT})
+SYM="${FILE%.*}"
 
 COMPILER=ps-compiler.image
 

@@ -1,7 +1,12 @@
 TARGET=hello
 
 # These are currently scheme modules
-OBJS=hello.o
+SRCDIR=src
+OBJDIR=obj
+OUTDIR=bin
+
+OBJS:=$(patsubst %.scm,%.o,$(wildcard ${SRCDIR}/*.scm))
+OBJS:=$(subst ${SRCDIR},${OBJDIR},${OBJS})
 
 CC=gcc
 
@@ -10,11 +15,24 @@ LDFLAGS= -lscheme48
 
 SCM=./scm.sh
 
-$(TARGET): $(OBJS)
+.phony: all dir clean
+
+all: $(TARGET)
+
+$(TARGET): dir $(OBJS)
 	$(CC) $< $(LDFLAGS) -o $@
 
-%.o : %.c
+$(OBJDIR)/%.o : $(SRCDIR)/%.c
 	$(CC) $< $(CFLAGS) -c -o $@
 
-%.c : %.scm
+$(SRCDIR)/%.c : $(SRCDIR)/%.scm
 	$(SCM) $< $@
+
+dir:
+	@mkdir -p ${OBJDIR} ${OUTDIR}
+
+
+clean:
+	@rm -rf ${OBJDIR}
+	@rm -rf ${OUTDIR}
+
