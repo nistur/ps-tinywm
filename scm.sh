@@ -2,10 +2,10 @@
 
 IN=$1
 OUT=$2
-FILE=$(basename ${OUT})
+FILE=$(basename ${IN})
 SYM="${FILE%.*}"
 
-COMPILER=ps-compiler.image
+COMPILER=extern/scheme48/ps-compiler/ps-compiler.image
 
 if [ -f "$COMPILER" ]; then
     scheme48 -i ${COMPILER} <<EOF
@@ -15,6 +15,6 @@ EOF
     echo
 else
     echo "Unable to find ${COMPILER}"
-    return -1
+    exit -1
     
 fi

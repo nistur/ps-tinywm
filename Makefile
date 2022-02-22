@@ -15,22 +15,24 @@ LDFLAGS= -lscheme48
 
 SCM=./scm.sh
 
-.phony: all dir clean
+.phony: all buildenv dir clean
 
 all: $(TARGET)
 
 $(TARGET): dir $(OBJS)
 	$(CC) $< $(LDFLAGS) -o $@
 
-$(OBJDIR)/%.o : $(SRCDIR)/%.c
+$(OBJDIR)/%.o : $(OBJDIR)/%-generated.c
 	$(CC) $< $(CFLAGS) -c -o $@
 
-$(SRCDIR)/%.c : $(SRCDIR)/%.scm
+$(OBJDIR)/%-generated.c : $(SRCDIR)/%.scm
 	$(SCM) $< $@
 
 dir:
 	@mkdir -p ${OBJDIR} ${OUTDIR}
 
+buildenv:
+	./scripts/make-buildenv.sh
 
 clean:
 	@rm -rf ${OBJDIR}
