@@ -8,18 +8,18 @@ OUTDIR=bin
 OBJS:=$(patsubst %.scm,%.o,$(wildcard ${SRCDIR}/*.scm))
 OBJS:=$(subst ${SRCDIR},${OBJDIR},${OBJS})
 
-CC=gcc
+CC?=gcc
 
-CFLAGS= -I/usr/local/include/scheme48
-LDFLAGS= -lscheme48
+CFLAGS= -Iextern/scheme48/c
+LDFLAGS= -Lextern/scheme48/c -lscheme48
 
 SCM=./scm.sh
 
 .phony: all buildenv dir clean
 
-all: $(TARGET)
+all: dir $(TARGET)
 
-$(TARGET): dir $(OBJS)
+$(TARGET): $(OBJS)
 	$(CC) $< $(LDFLAGS) -o $@
 
 $(OBJDIR)/%.o : $(OBJDIR)/%-generated.c
