@@ -18,3 +18,18 @@ else
     exit -1
     
 fi
+
+
+readarray -t DEPS <<< "$(cat ${IN} | grep  "(files" |  sed -e 's/[[:space:]]*(files \(.*\)))/\1.scm/g')"
+
+echo -n "${OUT}: " > ${OUT}.d
+for i in "${DEPS[@]}" ; do
+    echo -n "src/${i} " >> ${OUT}.d
+done
+
+echo >> ${OUT}.d
+echo >> ${OUT}.d
+for i in "${DEPS[@]}" ; do
+    echo "src/${i}:" >> ${OUT}.d
+    echo >> ${OUT}.d
+done

@@ -3,7 +3,6 @@ TARGET=hello
 # These are currently scheme modules
 SRCDIR=src
 OBJDIR=obj
-OUTDIR=bin
 
 OBJS:=$(patsubst %.scm,%.o,$(wildcard ${SRCDIR}/*.scm))
 OBJS:=$(subst ${SRCDIR},${OBJDIR},${OBJS})
@@ -23,19 +22,20 @@ $(TARGET): $(OBJS)
 	$(CC) $< $(LDFLAGS) -o $@
 
 $(OBJDIR)/%.o : $(OBJDIR)/%-generated.c
-	$(CC) $< $(CFLAGS) -c -o $@
+	$(CC) $< $(CFLAGS) -c -o $@ -MMD -MP -MF $@.d
 
 $(OBJDIR)/%-generated.c : $(SRCDIR)/%.scm
 	$(SCM) $< $@
 
 dir:
-	@mkdir -p ${OBJDIR} ${OUTDIR}
+	@mkdir -p ${OBJDIR}
 
 buildenv:
 	./scripts/make-buildenv.sh
 
 clean:
 	@rm -rf ${OBJDIR}
-	@rm -rf ${OUTDIR}
 
 .PRECIOUS: $(OBJDIR)/%-generated.c
+
+-include $(OBJDIR)/*.d
