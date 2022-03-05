@@ -1,0 +1,5 @@
+(define (test-fun)
+  (let ((out (current-output-port)))
+    (write-string "Not a mushroom, honest" out)
+    (newline out)
+    0))

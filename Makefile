@@ -11,7 +11,7 @@ OBJS:=$(subst ${SRCDIR},${OBJDIR},${OBJS})
 CC?=gcc
 
 CFLAGS= -Iextern/scheme48/c
-LDFLAGS= -Lextern/scheme48/c -lscheme48
+LDFLAGS= -Lextern/scheme48/c -lscheme48 -ldl
 
 SCM=./scm.sh
 
@@ -38,3 +38,4 @@ clean:
 	@rm -rf ${OBJDIR}
 	@rm -rf ${OUTDIR}
 
+.PRECIOUS: $(OBJDIR)/%-generated.c

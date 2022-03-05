@@ -1,9 +1,3 @@
-(define (boo)
-  (let ((out (current-output-port)))
-    (write-string "Not a mushroom" out)
-    (newline out)
-    0))
-
 (define (main argc argv)
   (if (= argc 2)
       (let ((out (current-output-port)))
@@ -20,5 +14,5 @@
 	(write-string "  Greets the world & <user>." out)
 	(newline out)
 	-1))
-  (boo))
+  (test-fun))
 
