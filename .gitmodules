@@ -1,0 +1,3 @@
+[submodule "extern/scheme48"]
+	path = extern/scheme48
+	url = https://github.com/nistur/scheme48

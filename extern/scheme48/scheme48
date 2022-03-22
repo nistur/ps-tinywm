@@ -1,5 +1,0 @@
-#!/bin/bash
-
-SCRIPTDIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
-exec "${SCRIPTDIR}/scheme48vm" -i "${SCRIPTDIR}/scheme48.image" "$@"
