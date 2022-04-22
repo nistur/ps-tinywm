@@ -1,13 +1,15 @@
 (define-structure xlib (export X/Display
 			       X/Screen
-
+			       X/Event
+			       
 			       X/open-display
 			       X/string-to-keysym
 			       X/keysym-to-keycode
 			       X/default-root-window
 			       X/grab-key
 			       X/grab-button
-
+			       X/next-event
+			       
 			       X/mod1-mask
 
 			       X/button-press-mask
@@ -22,5 +24,6 @@
 
 (define-structure tinywm (export main)
   (open prescheme)
+  (open ps-record-types)
   (open xlib)
   (files tinywm/tinywm))
