@@ -7,7 +7,7 @@
 
 (external-record-type X/Event "XEvent"
 		      (X/Event type)
-		      (type integer type))
+		      (type integer X/event-type))
 
 (define X/open-display
   (external "XOpenDisplay" (=> (integer) X/Display)))
@@ -42,3 +42,8 @@
 (define X/pointer-motion-mask (shift-left 1 6))
 
 (define X/grab-mode-async 1)
+
+(define X/key-press 2)
+(define X/button-press 4)
+(define X/button-release 5)
+(define X/motion-notify 6)

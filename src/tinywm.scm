@@ -9,6 +9,13 @@
 			       X/grab-key
 			       X/grab-button
 			       X/next-event
+
+			       X/event-type
+
+			       X/key-press
+			       X/button-press
+			       X/button-release
+			       X/motion-notify
 			       
 			       X/mod1-mask
 
