@@ -1,4 +1,4 @@
-TARGET=hello
+TARGET=tinywm
 
 # These are currently scheme modules
 SRCDIR=src
@@ -9,8 +9,8 @@ OBJS:=$(subst ${SRCDIR},${OBJDIR},${OBJS})
 
 CC?=gcc
 
-CFLAGS= -Iextern/scheme48/c
-LDFLAGS= -Lextern/scheme48/c -lscheme48 -ldl
+CFLAGS= -Iextern/scheme48/c -Isrc
+LDFLAGS= -Lextern/scheme48/c -lscheme48 -ldl -lX11
 
 SCM=./scm.sh
 

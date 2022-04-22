@@ -9,7 +9,8 @@ COMPILER=extern/scheme48/ps-compiler/ps-compiler.image
 
 if [ -f "$COMPILER" ]; then
     scheme48 -i ${COMPILER} <<EOF
-    (prescheme-compiler '${SYM} '("${IN}") '${SYM}-init "${OUT}")
+    (prescheme-compiler '${SYM} '("${IN}") '${SYM}-init "${OUT}"
+    '(header "#include <${SYM}.h>"))
     ,exit    
 EOF
     echo
